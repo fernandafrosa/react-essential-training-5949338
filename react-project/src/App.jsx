@@ -1,4 +1,4 @@
-import { useState, useReducer } from "react";
+import { useEffect, useReducer } from "react";
 import "./App.css";
 import chef from "./images/chef.jpg";
 
@@ -56,11 +56,17 @@ function Main({ dishes, openStatus, onStatus }) {
 }
 
 function App() {
-  // const [status, setStatus] = useState(true);
   const [status, toggle] = useReducer(
     (status) => !status,
     true
   );
+
+  useEffect(() => {
+    console.log(`The restaurant is ${status ? "open" : "closed"}.`)
+  }, []); // the [] says "just pass this function when the app renders
+  // and we can add a condition there as well, like [status] --> this will make it be called whenever certain value changes
+
+
   return (
     <div>
       <h1>
